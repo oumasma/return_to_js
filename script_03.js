@@ -1,22 +1,29 @@
 //Quel est le chiffre d'affaires moyen par utilisateur ?
-average = users.reduce((sum, { revenue }) => {
-    return sum + revenue;
-}, 0) / users.length,
 
-console.log('la moyenne est de', (average / 100), '€');
+const total = (accumulator, user) => {return accumulator, user.revenue}
+let totalCA = users.reduce(total, 0)
+
+
+console.log('la moyenne est de', (totalCA / 100), '€');
 
 
 //Quel est le pourcentage d'utilisateurs ayant rapporté de l'argent (revenue différent de 0) ?
 //let getUsers = users.filter(item => item.revenue > 0);
 
+const filtrePasGratos = user => { return 0 != user.revenue }
+let usersPayants = users.filter(filtrePasGratos)
+console.log("NB users payants: ", usersPayants.length)
+console.log("NB users payants: ", usersPayants.length / users.length * 100)
+
+
 
 //Parmi les utilisateurs ayant rapporté de l'argent, quel est le chiffre d'affaires moyen d'un utilisateur ?
-let findUsers = users.filter(item => item.revenue > 0);
-average = findUsers.reduce((sum, { revenue }) => {
-    return sum + revenue;
-}, 0) / findUsers.length,
+console.log("=== Pour les users payants: ")
+chiffreAffaireTotal = usersPayants.reduce(AccumulateurChiffreAffaireTotal, 0)
+console.log("CA total: ", chiffreAffaireTotal )
+// CA moyen = CA total / nb users
+console.log("CA moyen: ", chiffreAffaireTotal / usersPayants.length )
 
-console.log('la moyenne est de', (average / 100), "€ chez les utilisateurs qui ont rapporté de l'argent");
 
 
 //Combien avons-nous gagné d'argent au total ?
@@ -28,11 +35,9 @@ let sum = users
 
 
 //Combien avons-nous d'utilisateurs en France ?
-let numUsersFrance = users.reduce(function (n, person) {
-    return n + (person.country == 'France');
-}, 0);
-
-console.log("Le nombre d'utilisateurs en France est de ", (numUsersFrance));
+const filtreFrancais = user => { return "France" == user.country }
+let usersFrancais = users.filter(filtreFrancais)
+console.log("Users FR: ", usersFrancais.length)
 
 //Parmis ces utilisateurs, combien avons-nous de clients payants en France ?
 let findPayUsers = users.filter(item => item.revenue > 0);

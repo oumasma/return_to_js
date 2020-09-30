@@ -14,12 +14,13 @@ const books = [
   ];
 
 //Sors-moi la liste des titres des livres du CDI
-let booksList = books.map((e) => {
-    return `${e.title}`;
-});
-console.log(booksList);
+const getList = book => { return book.title};
+let res = books.map(getList)
+console.log('titres : ', res);
 
 //Est-ce que tous les livres ont été au moins empruntés une fois ?
+
+
 if(books.some(book => book.rented === 0)){
     console.log("Tous les livres n'ont pas été emprunté.");
   } else{
@@ -28,16 +29,19 @@ if(books.some(book => book.rented === 0)){
 
 
 //Quel est livre le plus emprunté ?
-let maxRented = books.find( x => x.rented === Math.max.apply(Math, books.map((o) =>{ 
-    return o.rented; })))
-console.log(maxRented)
+const maxRented = (accumulator, book) => {return Math.max{accumulator, book.rented} }
+res = books.reduce(maxRented, 0)
+console.log("max de location", res)
+
+//let maxRented = books.find( x => x.rented === Math.max.apply(Math, books.map((o) =>{ 
+    //return o.rented; })))
+//console.log(maxRented)
 
 //Quel est le livre le moins emprunté ?
 
-let minRented = books.reduce((prev, curr) => {
-    return prev.rented < curr.rented ? prev : curr;
-});
-console.log(minRented);
+const minRented = (accumulator, book) => {return Math.min{accumulator, book.rented} }
+res = books.reduce(books[0], rented)
+console.log("min de location", res)
 
 //Supprime le livre avec l'ID: 133712 ;
 

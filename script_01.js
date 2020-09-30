@@ -21,30 +21,27 @@ const entrepreneurs = [
 
 //Sors une array qui ne contient que le prénom et le nom des entrepreneurs
 
-let arrayNames = entrepreneurs.map((e) => {
-    return `${e.first} ${e.last}`;
-});
-console.log(arrayNames);
+const mapper_1 = entrepreneur => { return { first: entrepreneur.first, last: entrepreneur.last} }
+res = entrepreneurs.map(mapper_1) 
+console.log('exo 1', res);
 
 
 //Pour chaque entrepreneur,
 //remplace la date de naissance par l'âge de l'entrepreneur qu'il aurait aujourd'hui.
 
-let arrayAges = entrepreneurs.map((i) => {
-return `${i.first} ${i.last} ${2020 - i.year} ans`;
-});
-console.log(arrayAges);
-
+const mapper_2 = entrepreneur => { return { first: entrepreneur.first, last: entrepreneur.last, age: 2020 - entrepreneur.year} }
+res = entrepreneurs.map(mapper_2) ;
+console.log('exo 2', res);
 
 //Les clés first et last manquent de lisibilité, remplace-les par firstName et lastName
 
-let changeKeys = entrepreneurs.map(({ first, last }) => ({ firstName: first, lastName: last }));
-console.log(changeKeys);
+const mapper_3 = entrepreneur => { return { firstName: entrepreneur.first, lastName: entrepreneur.last, age: 2020 - entrepreneur.year} }
+res = entrepreneurs.map(mapper_3) 
+console.log('exo 3', res);
 
 
 //Filtre dans cette liste les entrepreneurs qui sont nés dans les années 70
 
-let seventies = entrepreneurs.filter((e) => {
-    return e.year >= 1970 && e.year < 1980;
-});
-console.log(seventies);
+const seventies = entrepreneur => { return entrepreneur.year >= 1970 && entrepreneur.year < 1980 }
+res = entrepreneurs.filter(seventies).map(mapper_3)
+console.log('exo 4', res);
