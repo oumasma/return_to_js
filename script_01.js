@@ -21,27 +21,27 @@ const entrepreneurs = [
 
 //Sors une array qui ne contient que le prénom et le nom des entrepreneurs
 
-const mapper_1 = entrepreneur => { return { first: entrepreneur.first, last: entrepreneur.last} }
-res = entrepreneurs.map(mapper_1) 
+const mapper1 = entrepreneur => { return { first: entrepreneur.first, last: entrepreneur.last} }
+res = entrepreneurs.map(mapper1) 
 console.log('exo 1', res);
 
 
 //Pour chaque entrepreneur,
 //remplace la date de naissance par l'âge de l'entrepreneur qu'il aurait aujourd'hui.
 
-const mapper_2 = entrepreneur => { return { first: entrepreneur.first, last: entrepreneur.last, age: 2020 - entrepreneur.year} }
-res = entrepreneurs.map(mapper_2) ;
+const mapper2 = entrepreneur => { return { first: entrepreneur.first, last: entrepreneur.last, age: 2020 - entrepreneur.year} }
+res = entrepreneurs.map(mapper2) ;
 console.log('exo 2', res);
 
 //Les clés first et last manquent de lisibilité, remplace-les par firstName et lastName
 
-const mapper_3 = entrepreneur => { return { firstName: entrepreneur.first, lastName: entrepreneur.last, age: 2020 - entrepreneur.year} }
-res = entrepreneurs.map(mapper_3) 
+const mapper3 = entrepreneur => { return { firstName: entrepreneur.first, lastName: entrepreneur.last, age: 2020 - entrepreneur.year} }
+res = entrepreneurs.map(mapper3) 
 console.log('exo 3', res);
 
 
 //Filtre dans cette liste les entrepreneurs qui sont nés dans les années 70
 
 const seventies = entrepreneur => { return entrepreneur.year >= 1970 && entrepreneur.year < 1980 }
-res = entrepreneurs.filter(seventies).map(mapper_3)
+res = entrepreneurs.filter(seventies).map(mapper3)
 console.log('exo 4', res);
